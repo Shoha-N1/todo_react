@@ -24,6 +24,7 @@ export default function Todo() {
         name: todoName,
         isDone: false,
         id: todos.length + 1,
+        createdAt: new Date(Date.now()),
         dueDate: new Date(Date.now()),
       },
     ]);
@@ -58,17 +59,34 @@ export default function Todo() {
   return (
     <div>
       <div className="container">
-        <form className="form" onSubmit={handleSubmit}>
-          <input
-            className="inp-value"
-            value={todoName}
-            onChange={(evt) => setTodoName(evt.target.value)}
-            type="text"
-          />
-          <button type="submit">Add</button>
-          <button onClick={() => handleClearAll(todos)} type="button">
+      <h1 className="text-center my-4">TODO-React</h1>
+        <form id="form" className="form row" onSubmit={handleSubmit}>
+          <div className="row ">
+            <div className="me-3">
+              <div className="my-2">
+                <input
+                  required
+                  name="title"
+                  placeholder="Task name"
+                  className="form-control w-100 ml-3"
+                  value={todoName}
+                  onChange={(evt) => setTodoName(evt.target.value)}
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div className="col-lg-2">
+          <div className="my-2">
+            <button type="submit" className="btn btn-primary w-150">Add</button>
+          </div>
+        </div>
+
+        <button className="btn btn-primary w-100 ml-1" onClick={() => handleClearAll(todos)} type="button">
             ClearAll
           </button>
+          </div>
+
         </form>
         <div>
           {todos.map((todo) => (
